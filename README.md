@@ -52,7 +52,7 @@ Then delete the worked example (`includes/Examples/`, the example migration, the
 ## Architecture notes
 
 - **Custom tables via migrations, not CPTs**, for anything transactional or queried by non-post criteria. CPTs remain a fine choice for content-shaped data.
-- **A REST route is capability-gated unless you explicitly opt it out** (`public: true`), never the other way around — the failure mode of a forgotten check is "access denied," not "accidentally public."
+- **A REST route is capability-gated unless you explicitly opt it out** (`is_public: true`), never the other way around — the failure mode of a forgotten check is "access denied," not "accidentally public."
 - **Config is a plain PHP array** (`config/app.php`) — add a provider, a REST controller, or an admin page by adding a line, not by writing more wiring code.
 - **Providers only bind in `register()`**; anything that touches a WordPress hook belongs in `boot()`, which runs after every provider has finished registering.
 
@@ -61,6 +61,12 @@ Then delete the worked example (`includes/Examples/`, the example migration, the
 - PHP 8.1+
 - WordPress 6.4+
 - Node 20+ (build tooling only — not a runtime dependency)
+
+## Keeping dependencies current
+
+[Dependabot](.github/dependabot.yml) opens a weekly PR per outdated dependency (composer, npm, and the GitHub Actions used by CI), grouped by concern (PHPUnit/testing, WPCS, PHPStan, `@wordpress/*`) so related bumps land together instead of as a flood of single-package PRs. Every PR runs the full CI matrix (PHPCS, PHPStan, PHPUnit across PHP 8.1/8.2/8.3, JS lint, build) before it's safe to merge — this is what catches a break like *"a transitive dependency's newest version quietly requires a newer PHP than this project's stated baseline"* automatically, rather than discovering it during an actual plugin install.
+
+For an ad-hoc check between scheduled runs: `composer outdated --direct` and `npm outdated` show what's behind right now.
 
 ## License
 
