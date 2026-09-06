@@ -3,6 +3,23 @@
 	"description": "A PHP DI + REST + React foundation for building modern WordPress plugins.",
 	"type": "wordpress-plugin",
 	"license": "GPL-2.0-or-later",
+	"homepage": "https://github.com/lihsaa591/wpkernel",
+	"keywords": [
+		"dependency-injection",
+		"league-container",
+		"php",
+		"plugin-boilerplate",
+		"react",
+		"wordpress",
+		"wordpress-plugin",
+		"wordpress-plugin-boilerplate",
+		"wordpress-plugin-development",
+		"wp-plugin"
+	],
+	"support": {
+		"issues": "https://github.com/lihsaa591/wpkernel/issues",
+		"source": "https://github.com/lihsaa591/wpkernel"
+	},
 	"minimum-stability": "stable",
 	"prefer-stable": true,
 	"require": {
