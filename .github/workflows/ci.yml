@@ -1,0 +1,83 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  lint-php:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          tools: composer
+      - run: composer install --no-progress --prefer-dist
+      - run: composer run phpcs
+
+  static-analysis:
+    runs-on: ubuntu-latest
+    needs: lint-php
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          tools: composer
+      - run: composer install --no-progress --prefer-dist
+      - run: composer run phpstan
+
+  lint-js:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run lint:js
+
+  test-php:
+    runs-on: ubuntu-latest
+    needs: [ lint-php, static-analysis ]
+    strategy:
+      matrix:
+        php: [ '8.1', '8.2', '8.3' ]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer
+          coverage: none
+      - run: composer install --no-progress --prefer-dist
+      - run: composer run test
+
+  build:
+    runs-on: ubuntu-latest
+    needs: [ test-php, lint-js ]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          tools: composer
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: composer install --no-dev --no-progress --prefer-dist --optimize-autoloader
+      - run: npm ci
+      - run: npm run build
+      - name: Package release zip
+        run: |
+          mkdir -p dist/wpkernel
+          rsync -a --exclude-from=.distignore ./ dist/wpkernel/
+          cd dist && zip -r wpkernel.zip wpkernel
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wpkernel
+          path: dist/wpkernel.zip

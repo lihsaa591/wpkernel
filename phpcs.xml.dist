@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<ruleset name="WPKernel">
+	<description>WPCS rules for WPKernel and plugins scaffolded from it.</description>
+
+	<file>.</file>
+	<exclude-pattern>/vendor/*</exclude-pattern>
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+	<exclude-pattern>/build/*</exclude-pattern>
+	<exclude-pattern>/tests/*</exclude-pattern>
+
+	<!--
+	bin/ is CLI dev tooling run with plain `php`, outside any WordPress
+	runtime (no WP_Filesystem, no output-escaping context, no plugin
+	prefix on locals) — WPCS's runtime-oriented rules don't apply, and
+	it's stripped from the release zip via .distignore anyway.
+	-->
+	<exclude-pattern>/bin/*</exclude-pattern>
+
+	<arg value="sp"/>
+	<arg name="basepath" value="."/>
+	<arg name="parallel" value="8"/>
+	<arg name="extensions" value="php"/>
+
+	<config name="minimum_supported_wp_version" value="6.4"/>
+	<config name="testVersion" value="8.1-"/>
+
+	<rule ref="WordPress-Extra">
+		<exclude name="WordPress.Files.FileName"/>
+	</rule>
+	<rule ref="WordPress-Docs"/>
+	<rule ref="PHPCompatibilityWP"/>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="wpkernel"/>
+				<element value="WPKernel"/>
+				<element value="WPKERNEL"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.Security.EscapeOutput"/>
+</ruleset>

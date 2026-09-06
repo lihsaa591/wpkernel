@@ -1,0 +1,10 @@
+/vendor/
+/node_modules/
+/build/
+/dist/
+/coverage/
+*.log
+.DS_Store
+.phpunit.result.cache
+.phpcs-cache
+/wp-env-homedir/
