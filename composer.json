@@ -5,16 +5,16 @@
 	"license": "GPL-2.0-or-later",
 	"homepage": "https://github.com/lihsaa591/wpkernel",
 	"keywords": [
+		"dependency-injection",
+		"league-container",
+		"php",
+		"plugin-boilerplate",
+		"react",
 		"wordpress",
 		"wordpress-plugin",
-		"plugin-boilerplate",
-		"dependency-injection",
-		"rest-api",
-		"react",
-		"league-container",
-		"phpstan",
-		"phpcs",
-		"wp-scripts"
+		"wordpress-plugin-boilerplate",
+		"wordpress-plugin-development",
+		"wp-plugin"
 	],
 	"support": {
 		"issues": "https://github.com/lihsaa591/wpkernel/issues",
