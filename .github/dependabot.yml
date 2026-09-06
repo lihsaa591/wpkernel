@@ -35,6 +35,14 @@ updates:
       wordpress-packages:
         patterns:
           - "@wordpress/*"
+    ignore:
+      # typescript-eslint explicitly does not support TS 7.0 yet (fails
+      # at load time, not just a lint mismatch) — see
+      # https://github.com/typescript-eslint/typescript-eslint/issues/10940.
+      # Revisit once that lands upstream; until then this would just
+      # reopen every week with the same failure.
+      - dependency-name: "typescript"
+        versions: [ ">=7.0.0" ]
 
   # The GitHub Actions used by the CI workflow itself.
   - package-ecosystem: "github-actions"
