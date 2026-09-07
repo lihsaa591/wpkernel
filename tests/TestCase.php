@@ -2,12 +2,12 @@
 /**
  * Base test case wiring up Brain Monkey.
  *
- * @package WPKernel
+ * @package WPSprout
  */
 
 declare( strict_types=1 );
 
-namespace WPKernel\Tests;
+namespace WPSprout\Tests;
 
 use Brain\Monkey;
 use Brain\Monkey\Functions;

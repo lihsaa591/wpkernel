@@ -2,14 +2,14 @@
 /**
  * Migration runner.
  *
- * @package WPKernel
+ * @package WPSprout
  */
 
 declare( strict_types=1 );
 
-namespace WPKernel\Database;
+namespace WPSprout\Database;
 
-use WPKernel\Contracts\MigrationInterface;
+use WPSprout\Contracts\MigrationInterface;
 
 /**
  * Discovers migration files, runs the ones not yet applied, and can
@@ -22,7 +22,7 @@ use WPKernel\Contracts\MigrationInterface;
  * an instance implementing MigrationInterface, or an anonymous class:
  *
  *     <?php
- *     use WPKernel\Database\Migration;
+ *     use WPSprout\Database\Migration;
  *
  *     return new class() extends Migration {
  *         public function up(): void {

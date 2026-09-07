@@ -12,21 +12,21 @@
  * Delete this file (and the accompanying migration) once you no longer
  * need the worked example.
  *
- * @package WPKernel
+ * @package WPSprout
  */
 
 declare( strict_types=1 );
 
-namespace WPKernel\Examples;
+namespace WPSprout\Examples;
 
 use WP_Error;
 use WP_REST_Request;
 use WP_REST_Response;
-use WPKernel\RestApi\AbstractController;
+use WPSprout\RestApi\AbstractController;
 
 /**
  * Worked example: a minimal CRUD REST controller over the
- * wpkernel_example_items table.
+ * wpsprout_example_items table.
  */
 final class ExampleItemsController extends AbstractController {
 
@@ -35,10 +35,10 @@ final class ExampleItemsController extends AbstractController {
 	 *
 	 * @var string
 	 */
-	protected string $namespace = 'wpkernel/v1';
+	protected string $namespace = 'wpsprout/v1';
 
 	/**
-	 * Route base — registers under wpkernel/v1/items.
+	 * Route base — registers under wpsprout/v1/items.
 	 *
 	 * @var string
 	 */
@@ -81,7 +81,7 @@ final class ExampleItemsController extends AbstractController {
 		global $wpdb;
 
 		$rows = $wpdb->get_results(
-			"SELECT id, title, created_at FROM {$wpdb->prefix}wpkernel_example_items ORDER BY id DESC LIMIT 50", // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- static query, no user input.
+			"SELECT id, title, created_at FROM {$wpdb->prefix}wpsprout_example_items ORDER BY id DESC LIMIT 50", // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- static query, no user input.
 			ARRAY_A
 		);
 
@@ -99,7 +99,7 @@ final class ExampleItemsController extends AbstractController {
 		$title = (string) $request->get_param( 'title' );
 
 		$inserted = $wpdb->insert(
-			$wpdb->prefix . 'wpkernel_example_items',
+			$wpdb->prefix . 'wpsprout_example_items',
 			array(
 				'title'      => $title,
 				'created_at' => current_time( 'mysql' ),
@@ -108,7 +108,7 @@ final class ExampleItemsController extends AbstractController {
 		);
 
 		if ( false === $inserted ) {
-			return $this->error( 'wpkernel_insert_failed', __( 'Could not create the item.', 'wpkernel' ), 500 );
+			return $this->error( 'wpsprout_insert_failed', __( 'Could not create the item.', 'wpsprout' ), 500 );
 		}
 
 		return $this->success(

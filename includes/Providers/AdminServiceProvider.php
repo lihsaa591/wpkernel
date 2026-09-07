@@ -2,15 +2,15 @@
 /**
  * Admin UI service provider.
  *
- * @package WPKernel
+ * @package WPSprout
  */
 
 declare( strict_types=1 );
 
-namespace WPKernel\Providers;
+namespace WPSprout\Providers;
 
 use League\Container\Container;
-use WPKernel\Admin\AdminPage;
+use WPSprout\Admin\AdminPage;
 
 /**
  * Builds one AdminPage per entry in config('admin.pages') — add a page

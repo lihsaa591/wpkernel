@@ -2,12 +2,12 @@
 /**
  * Service provider contract.
  *
- * @package WPKernel
+ * @package WPSprout
  */
 
 declare( strict_types=1 );
 
-namespace WPKernel\Contracts;
+namespace WPSprout\Contracts;
 
 use League\Container\Container;
 

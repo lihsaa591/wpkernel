@@ -1,5 +1,5 @@
 {
-	"name": "wpkernel",
+	"name": "wpsprout",
 	"version": "0.1.0",
 	"description": "A PHP DI + REST + React foundation for building modern WordPress plugins.",
 	"license": "GPL-2.0-or-later",

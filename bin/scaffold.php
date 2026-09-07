@@ -1,6 +1,6 @@
 <?php
 /**
- * Renames WPKernel into your own plugin: namespace, slug, text domain,
+ * Renames WPSprout into your own plugin: namespace, slug, text domain,
  * and plugin display name, across the whole codebase.
  *
  * Usage:
@@ -11,7 +11,7 @@
  * diff before committing. Re-run is not idempotent; run it once, on a
  * clean checkout.
  *
- * @package WPKernel
+ * @package WPSprout
  */
 
 declare( strict_types=1 );
@@ -44,13 +44,18 @@ $root = dirname( __DIR__ );
 
 $constant_prefix = strtoupper( str_replace( '-', '_', $slug ) );
 
-// Token map applied to every matched file. "WPKernel" is ambiguous (it's
+// Token map applied to every matched file. "WPSprout" is ambiguous (it's
 // both the PHP namespace root AND, in the plugin header's "Plugin Name:"
 // line, the human-readable name) — that one collision is resolved as an
 // explicit extra pass on the main plugin file, below.
 $skip_dirs = array( '.git', 'node_modules', 'vendor', 'build', 'dist', 'coverage' );
 
-$extensions = array( 'php', 'json', 'md', 'xml', 'neon', 'yml', 'yaml', 'js' );
+// Dot-prefixed suffixes, matched with str_ends_with() rather than
+// SplFileInfo::getExtension() — getExtension() only returns the LAST
+// segment, so "phpcs.xml.dist" reports "dist", not "xml", and would
+// silently be skipped. Suffix matching handles compound extensions
+// like ".xml.dist" / ".neon.dist" correctly.
+$suffixes = array( '.php', '.json', '.md', '.xml', '.neon', '.yml', '.yaml', '.js', '.xml.dist', '.neon.dist' );
 
 $files_changed = 0;
 
@@ -69,15 +74,23 @@ foreach ( $iterator as $file ) {
 		continue;
 	}
 
-	if ( ! in_array( strtolower( $file->getExtension() ), $extensions, true ) ) {
+	$filename_lower = strtolower( $file->getFilename() );
+	$matches_suffix = false;
+	foreach ( $suffixes as $suffix ) {
+		if ( str_ends_with( $filename_lower, $suffix ) ) {
+			$matches_suffix = true;
+			break;
+		}
+	}
+	if ( ! $matches_suffix ) {
 		continue;
 	}
 
 	$path     = $file->getPathname();
 	$original = file_get_contents( $path );
-	$updated  = strtr( $original, array( 'WPKernel' => $namespace, 'wpkernel' => $slug, 'WPKERNEL' => $constant_prefix ) );
+	$updated  = strtr( $original, array( 'WPSprout' => $namespace, 'wpsprout' => $slug, 'WPSPROUT' => $constant_prefix ) );
 
-	if ( str_ends_with( $path, DIRECTORY_SEPARATOR . 'wpkernel.php' ) ) {
+	if ( str_ends_with( $path, DIRECTORY_SEPARATOR . 'wpsprout.php' ) ) {
 		$updated = str_replace( "Plugin Name:       {$namespace}", "Plugin Name:       {$plugin_name}", $updated );
 	}
 
@@ -91,12 +104,12 @@ foreach ( $iterator as $file ) {
 	}
 }
 
-$main_file_old = $root . '/wpkernel.php';
+$main_file_old = $root . '/wpsprout.php';
 $main_file_new = $root . "/{$slug}.php";
 
 if ( file_exists( $main_file_old ) ) {
 	if ( $dry_run ) {
-		echo "Would rename: wpkernel.php -> {$slug}.php\n";
+		echo "Would rename: wpsprout.php -> {$slug}.php\n";
 	} else {
 		rename( $main_file_old, $main_file_new );
 	}

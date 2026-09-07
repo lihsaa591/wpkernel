@@ -2,12 +2,12 @@
 /**
  * General application bindings.
  *
- * @package WPKernel
+ * @package WPSprout
  */
 
 declare( strict_types=1 );
 
-namespace WPKernel\Providers;
+namespace WPSprout\Providers;
 
 use League\Container\Container;
 

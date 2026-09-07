@@ -2,14 +2,14 @@
 /**
  * Admin page + React mount helper.
  *
- * @package WPKernel
+ * @package WPSprout
  */
 
 declare( strict_types=1 );
 
-namespace WPKernel\Admin;
+namespace WPSprout\Admin;
 
-use WPKernel\Helper\Assets;
+use WPSprout\Helper\Assets;
 
 /**
  * Registers a top-level (or sub-menu) admin page whose body is a single
@@ -97,15 +97,15 @@ final class AdminPage {
 			return;
 		}
 
-		$handle = 'wpkernel-' . $this->script_entry;
+		$handle = 'wpsprout-' . $this->script_entry;
 
 		Assets::enqueue_script(
 			$handle,
-			WPKERNEL_PATH . 'build',
-			WPKERNEL_URL . 'build',
+			WPSPROUT_PATH . 'build',
+			WPSPROUT_URL . 'build',
 			$this->script_entry
 		);
-		Assets::enqueue_style( $handle, WPKERNEL_PATH . 'build', WPKERNEL_URL . 'build', $this->script_entry );
+		Assets::enqueue_style( $handle, WPSPROUT_PATH . 'build', WPSPROUT_URL . 'build', $this->script_entry );
 
 		wp_localize_script(
 			$handle,

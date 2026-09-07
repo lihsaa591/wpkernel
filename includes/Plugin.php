@@ -2,15 +2,15 @@
 /**
  * Main plugin class.
  *
- * @package WPKernel
+ * @package WPSprout
  */
 
 declare( strict_types=1 );
 
-namespace WPKernel;
+namespace WPSprout;
 
 use League\Container\Container;
-use WPKernel\Contracts\ServiceProviderInterface;
+use WPSprout\Contracts\ServiceProviderInterface;
 
 /**
  * Owns the DI container and the two-phase provider boot sequence:
@@ -113,11 +113,11 @@ final class Plugin {
 		$this->booted = true;
 
 		/**
-		 * Fires once WPKernel and all of its registered providers have booted.
+		 * Fires once WPSprout and all of its registered providers have booted.
 		 *
 		 * @param Plugin $plugin The booted plugin instance.
 		 */
-		do_action( 'wpkernel_booted', $this );
+		do_action( 'wpsprout_booted', $this );
 	}
 
 	/**

@@ -3,17 +3,17 @@
  * Verifies the "capability check is opt-out, not opt-in" safety
  * property described in AbstractController's docblock.
  *
- * @package WPKernel
+ * @package WPSprout
  */
 
 declare( strict_types=1 );
 
-namespace WPKernel\Tests\Unit\RestApi;
+namespace WPSprout\Tests\Unit\RestApi;
 
 use Brain\Monkey\Functions;
 use WP_Error;
-use WPKernel\RestApi\AbstractController;
-use WPKernel\Tests\TestCase;
+use WPSprout\RestApi\AbstractController;
+use WPSprout\Tests\TestCase;
 
 final class AbstractControllerTest extends TestCase {
 
