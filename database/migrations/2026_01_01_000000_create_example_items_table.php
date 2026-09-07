@@ -5,12 +5,12 @@
  * Demonstrates the Migration base class end to end. Delete this file
  * (and includes/Examples/) once you no longer need the worked example.
  *
- * @package WPKernel
+ * @package WPSprout
  */
 
 declare( strict_types=1 );
 
-use WPKernel\Database\Migration;
+use WPSprout\Database\Migration;
 
 return new class() extends Migration {
 
@@ -18,7 +18,7 @@ return new class() extends Migration {
 	 * Create the example items table.
 	 */
 	public function up(): void {
-		$table           = $this->table( 'wpkernel_example_items' );
+		$table           = $this->table( 'wpsprout_example_items' );
 		$charset_collate = $this->wpdb->get_charset_collate();
 
 		$this->delta(
@@ -35,7 +35,7 @@ return new class() extends Migration {
 	 * Drop the example items table.
 	 */
 	public function down(): void {
-		$table = $this->table( 'wpkernel_example_items' );
+		$table = $this->table( 'wpsprout_example_items' );
 		$this->wpdb->query( "DROP TABLE IF EXISTS {$table}" ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name is derived from $wpdb->prefix, not user input.
 	}
 };

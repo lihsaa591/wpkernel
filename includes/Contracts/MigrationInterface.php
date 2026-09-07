@@ -2,12 +2,12 @@
 /**
  * Migration contract.
  *
- * @package WPKernel
+ * @package WPSprout
  */
 
 declare( strict_types=1 );
 
-namespace WPKernel\Contracts;
+namespace WPSprout\Contracts;
 
 /**
  * A single, reversible database change.

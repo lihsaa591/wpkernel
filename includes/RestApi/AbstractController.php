@@ -2,12 +2,12 @@
 /**
  * REST API controller base.
  *
- * @package WPKernel
+ * @package WPSprout
  */
 
 declare( strict_types=1 );
 
-namespace WPKernel\RestApi;
+namespace WPSprout\RestApi;
 
 use WP_Error;
 use WP_REST_Request;
@@ -28,7 +28,7 @@ abstract class AbstractController {
 	 *
 	 * @var string
 	 */
-	protected string $namespace = 'wpkernel/v1';
+	protected string $namespace = 'wpsprout/v1';
 
 	/**
 	 * Route base, e.g. "items" -> registered at {namespace}/items.
@@ -89,10 +89,10 @@ abstract class AbstractController {
 		}
 
 		return new WP_Error(
-			'wpkernel_rest_forbidden',
+			'wpsprout_rest_forbidden',
 			sprintf(
 				/* translators: %s: required WordPress capability */
-				__( 'You do not have the "%s" capability required for this request.', 'wpkernel' ),
+				__( 'You do not have the "%s" capability required for this request.', 'wpsprout' ),
 				$capability
 			),
 			array( 'status' => rest_authorization_required_code() )

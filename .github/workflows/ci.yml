@@ -74,10 +74,10 @@ jobs:
       - run: npm run build
       - name: Package release zip
         run: |
-          mkdir -p dist/wpkernel
-          rsync -a --exclude-from=.distignore ./ dist/wpkernel/
-          cd dist && zip -r wpkernel.zip wpkernel
+          mkdir -p dist/wpsprout
+          rsync -a --exclude-from=.distignore ./ dist/wpsprout/
+          cd dist && zip -r wpsprout.zip wpsprout
       - uses: actions/upload-artifact@v7
         with:
-          name: wpkernel
-          path: dist/wpkernel.zip
+          name: wpsprout
+          path: dist/wpsprout.zip

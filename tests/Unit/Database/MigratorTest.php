@@ -1,15 +1,15 @@
 <?php
 /**
- * @package WPKernel
+ * @package WPSprout
  */
 
 declare( strict_types=1 );
 
-namespace WPKernel\Tests\Unit\Database;
+namespace WPSprout\Tests\Unit\Database;
 
 use Brain\Monkey\Functions;
-use WPKernel\Database\Migrator;
-use WPKernel\Tests\TestCase;
+use WPSprout\Database\Migrator;
+use WPSprout\Tests\TestCase;
 
 final class MigratorTest extends TestCase {
 
@@ -25,7 +25,7 @@ final class MigratorTest extends TestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->fixtures_dir = sys_get_temp_dir() . '/wpkernel-migrator-test-' . uniqid();
+		$this->fixtures_dir = sys_get_temp_dir() . '/wpsprout-migrator-test-' . uniqid();
 		mkdir( $this->fixtures_dir, 0777, true );
 
 		$this->options_store = array();
@@ -52,7 +52,7 @@ final class MigratorTest extends TestCase {
 		$this->write_migration( '2024_01_01_000000_first', $order );
 		$this->write_migration( '2024_01_02_000000_second', $order );
 
-		$migrator = new Migrator( $this->fixtures_dir, 'wpkernel_test_migrations' );
+		$migrator = new Migrator( $this->fixtures_dir, 'wpsprout_test_migrations' );
 		$ran      = $migrator->migrate();
 
 		self::assertSame( array( '2024_01_01_000000_first', '2024_01_02_000000_second' ), $ran );
@@ -64,7 +64,7 @@ final class MigratorTest extends TestCase {
 
 		$this->write_migration( '2024_01_01_000000_first', $order );
 
-		$migrator = new Migrator( $this->fixtures_dir, 'wpkernel_test_migrations' );
+		$migrator = new Migrator( $this->fixtures_dir, 'wpsprout_test_migrations' );
 		$migrator->migrate();
 
 		$this->write_migration( '2024_01_02_000000_second', $order );
@@ -81,7 +81,7 @@ final class MigratorTest extends TestCase {
 		$this->write_migration( '2024_01_01_000000_first', $order );
 		$this->write_migration( '2024_01_02_000000_second', $order );
 
-		$migrator = new Migrator( $this->fixtures_dir, 'wpkernel_test_migrations' );
+		$migrator = new Migrator( $this->fixtures_dir, 'wpsprout_test_migrations' );
 		$migrator->migrate();
 
 		$order = array(); // Reset so we only observe the rollback calls.
@@ -103,7 +103,7 @@ final class MigratorTest extends TestCase {
 
 		$this->write_migration( '2024_01_01_000000_first', $order );
 
-		$migrator = new Migrator( $this->fixtures_dir, 'wpkernel_test_migrations' );
+		$migrator = new Migrator( $this->fixtures_dir, 'wpsprout_test_migrations' );
 		$migrator->migrate(); // Batch 1.
 
 		$this->write_migration( '2024_01_02_000000_second', $order );
@@ -128,13 +128,13 @@ final class MigratorTest extends TestCase {
 		file_put_contents(
 			$path,
 			'<?php
-			return new class( "' . $name . '" ) implements \WPKernel\Contracts\MigrationInterface {
+			return new class( "' . $name . '" ) implements \WPSprout\Contracts\MigrationInterface {
 				public function __construct( private string $name ) {}
 				public function up(): void {
-					\WPKernel\Tests\Unit\Database\MigratorTest::$order[] = $this->name . "-up";
+					\WPSprout\Tests\Unit\Database\MigratorTest::$order[] = $this->name . "-up";
 				}
 				public function down(): void {
-					\WPKernel\Tests\Unit\Database\MigratorTest::$order[] = $this->name . "-down";
+					\WPSprout\Tests\Unit\Database\MigratorTest::$order[] = $this->name . "-down";
 				}
 			};'
 		);

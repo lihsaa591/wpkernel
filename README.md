@@ -1,12 +1,12 @@
-# WPKernel
+# WPSprout
 
 A PHP DI + REST + React foundation for building modern WordPress plugins.
 
-WPKernel is **infrastructure, not a framework of domain abstractions**. It gives you a dependency-injection container, a service-provider boot lifecycle, versioned database migrations, a capability-gated REST API base, and a `@wordpress/scripts` React admin scaffold — the plumbing every non-trivial plugin needs and nobody enjoys re-writing. It deliberately does **not** ship a Model/Repository/ORM layer: that's coupled to what your plugin actually manages, and a generic version of it would be abstraction with nothing behind it. Build that on top, in your own plugin.
+WPSprout is **infrastructure, not a framework of domain abstractions**. It gives you a dependency-injection container, a service-provider boot lifecycle, versioned database migrations, a capability-gated REST API base, and a `@wordpress/scripts` React admin scaffold — the plumbing every non-trivial plugin needs and nobody enjoys re-writing. It deliberately does **not** ship a Model/Repository/ORM layer: that's coupled to what your plugin actually manages, and a generic version of it would be abstraction with nothing behind it. Build that on top, in your own plugin.
 
 ## Why this exists
 
-Most "WordPress plugin boilerplate" repos are either a single flat file with a giant class, or a full framework that assumes you want its opinions about everything. WPKernel sits in between: enough structure that a plugin with real domain complexity doesn't turn into a 3,000-line `class-plugin.php`, but no domain layer imposed on you before you've decided what your plugin's domain even is.
+Most "WordPress plugin boilerplate" repos are either a single flat file with a giant class, or a full framework that assumes you want its opinions about everything. WPSprout sits in between: enough structure that a plugin with real domain complexity doesn't turn into a 3,000-line `class-plugin.php`, but no domain layer imposed on you before you've decided what your plugin's domain even is.
 
 ## What's in the box
 
@@ -21,7 +21,7 @@ Most "WordPress plugin boilerplate" repos are either a single flat file with a g
 
 ## What's *not* in the box (yet)
 
-An AI provider abstraction and a WordPress Abilities/MCP registration helper are planned as **optional, separate modules** — added once a real plugin built on WPKernel actually needs them, not spec'd in speculatively. Same for a licensing/paid-tier system: `LicenseInterface` exists as a seam, with no implementation forced on you.
+An AI provider abstraction and a WordPress Abilities/MCP registration helper are planned as **optional, separate modules** — added once a real plugin built on WPSprout actually needs them, not spec'd in speculatively. Same for a licensing/paid-tier system: `LicenseInterface` exists as a seam, with no implementation forced on you.
 
 ## Getting started
 
@@ -37,7 +37,7 @@ Then point `wp-env` (or your own local WP install) at this directory as a plugin
 npx wp-env start
 ```
 
-Visit **wp-admin → WPKernel** to see the worked example end-to-end: a migration creates a table, a REST controller reads/writes it, a React admin page calls that REST API.
+Visit **wp-admin → WPSprout** to see the worked example end-to-end: a migration creates a table, a REST controller reads/writes it, a React admin page calls that REST API.
 
 ### Renaming for your own plugin
 

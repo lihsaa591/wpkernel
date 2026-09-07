@@ -1,9 +1,9 @@
 {
-	"name": "wpkernel/wpkernel",
+	"name": "wpsprout/wpsprout",
 	"description": "A PHP DI + REST + React foundation for building modern WordPress plugins.",
 	"type": "wordpress-plugin",
 	"license": "GPL-2.0-or-later",
-	"homepage": "https://github.com/lihsaa591/wpkernel",
+	"homepage": "https://github.com/lihsaa591/wpsprout",
 	"keywords": [
 		"dependency-injection",
 		"league-container",
@@ -17,8 +17,8 @@
 		"wp-plugin"
 	],
 	"support": {
-		"issues": "https://github.com/lihsaa591/wpkernel/issues",
-		"source": "https://github.com/lihsaa591/wpkernel"
+		"issues": "https://github.com/lihsaa591/wpsprout/issues",
+		"source": "https://github.com/lihsaa591/wpsprout"
 	},
 	"minimum-stability": "stable",
 	"prefer-stable": true,
@@ -44,12 +44,12 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"WPKernel\\": "includes/"
+			"WPSprout\\": "includes/"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"WPKernel\\Tests\\": "tests/"
+			"WPSprout\\Tests\\": "tests/"
 		}
 	},
 	"scripts": {

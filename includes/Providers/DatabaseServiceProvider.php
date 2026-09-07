@@ -2,15 +2,15 @@
 /**
  * Database / migrations service provider.
  *
- * @package WPKernel
+ * @package WPSprout
  */
 
 declare( strict_types=1 );
 
-namespace WPKernel\Providers;
+namespace WPSprout\Providers;
 
 use League\Container\Container;
-use WPKernel\Database\Migrator;
+use WPSprout\Database\Migrator;
 
 /**
  * Binds the Migrator and, as a safety net for the "updated the plugin
@@ -30,8 +30,8 @@ final class DatabaseServiceProvider extends AbstractServiceProvider {
 		$container->add(
 			Migrator::class,
 			static fn () => new Migrator(
-				WPKERNEL_PATH . 'database/migrations',
-				'wpkernel_applied_migrations'
+				WPSPROUT_PATH . 'database/migrations',
+				'wpsprout_applied_migrations'
 			)
 		)->setShared( true );
 	}
@@ -46,9 +46,9 @@ final class DatabaseServiceProvider extends AbstractServiceProvider {
 		add_action(
 			'admin_init',
 			static function () use ( $container ) {
-				$stored_version = get_option( 'wpkernel_db_version' );
+				$stored_version = get_option( 'wpsprout_db_version' );
 
-				if ( WPKERNEL_VERSION === $stored_version ) {
+				if ( WPSPROUT_VERSION === $stored_version ) {
 					return;
 				}
 
@@ -60,7 +60,7 @@ final class DatabaseServiceProvider extends AbstractServiceProvider {
 				$migrator = $container->get( Migrator::class );
 				$migrator->migrate();
 
-				update_option( 'wpkernel_db_version', WPKERNEL_VERSION );
+				update_option( 'wpsprout_db_version', WPSPROUT_VERSION );
 			}
 		);
 	}

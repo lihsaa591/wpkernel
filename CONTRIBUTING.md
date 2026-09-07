@@ -1,4 +1,4 @@
-# Contributing to WPKernel
+# Contributing to WPSprout
 
 ## Setup
 
@@ -21,7 +21,7 @@ CI runs all of the above, plus a PHP 8.1/8.2/8.3 test matrix. A PR that doesn't 
 
 ## Scope discipline
 
-WPKernel is infrastructure. Before adding something, ask: *does every plugin built on this need it, or does only my plugin need it?* If it's the latter, it belongs in your plugin's own `includes/`, not here.
+WPSprout is infrastructure. Before adding something, ask: *does every plugin built on this need it, or does only my plugin need it?* If it's the latter, it belongs in your plugin's own `includes/`, not here.
 
 ## Commit style
 

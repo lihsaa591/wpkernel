@@ -6,23 +6,23 @@
  * intentionally contains no logic beyond that wiring — anything more
  * belongs in a provider.
  *
- * @package WPKernel
+ * @package WPSprout
  */
 
 declare( strict_types=1 );
 
-use WPKernel\Plugin;
+use WPSprout\Plugin;
 
-$wpkernel_config = require WPKERNEL_PATH . 'config/app.php';
+$wpsprout_config = require WPSPROUT_PATH . 'config/app.php';
 
-$wpkernel = Plugin::instance();
+$wpsprout = Plugin::instance();
 
 // Bind config before any provider registers, so register()/boot() can
 // read it via $container->get( 'config' ).
-$wpkernel->container()->add( 'config', $wpkernel_config )->setShared( true );
+$wpsprout->container()->add( 'config', $wpsprout_config )->setShared( true );
 
-foreach ( $wpkernel_config['providers'] as $wpkernel_provider_class ) {
-	$wpkernel->add_provider( $wpkernel_provider_class );
+foreach ( $wpsprout_config['providers'] as $wpsprout_provider_class ) {
+	$wpsprout->add_provider( $wpsprout_provider_class );
 }
 
-$wpkernel->run();
+$wpsprout->run();

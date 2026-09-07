@@ -2,7 +2,7 @@
  * Example admin app.
  *
  * Demonstrates the full loop: React admin page -> REST API -> database,
- * against the ExampleItemsController / wpkernel_example_items table.
+ * against the ExampleItemsController / wpsprout_example_items table.
  * Replace this with your own plugin's admin UI; delete the PHP-side
  * example (includes/Examples/, the example migration) at the same time.
  */
@@ -24,7 +24,7 @@ import {
 import apiFetch from '@wordpress/api-fetch';
 import { __ } from '@wordpress/i18n';
 
-const REST_NAMESPACE = '/wpkernel/v1/items';
+const REST_NAMESPACE = '/wpsprout/v1/items';
 
 function ExampleApp() {
 	const [ items, setItems ] = useState( [] );
@@ -41,7 +41,7 @@ function ExampleApp() {
 			.then( ( response ) => setItems( response ) )
 			.catch( ( err ) =>
 				setError(
-					err.message || __( 'Failed to load items.', 'wpkernel' )
+					err.message || __( 'Failed to load items.', 'wpsprout' )
 				)
 			)
 			.finally( () => setIsLoading( false ) );
@@ -72,7 +72,7 @@ function ExampleApp() {
 			} )
 			.catch( ( err ) =>
 				setError(
-					err.message || __( 'Failed to create item.', 'wpkernel' )
+					err.message || __( 'Failed to create item.', 'wpsprout' )
 				)
 			)
 			.finally( () => setIsSaving( false ) );
@@ -81,7 +81,7 @@ function ExampleApp() {
 	return (
 		<Card>
 			<CardHeader>
-				{ __( 'WPKernel Example Items', 'wpkernel' ) }
+				{ __( 'WPSprout Example Items', 'wpsprout' ) }
 			</CardHeader>
 			<CardBody>
 				{ error && (
@@ -99,9 +99,9 @@ function ExampleApp() {
 					} }
 				>
 					<TextControl
-						label={ __( 'New item title', 'wpkernel' ) }
+						label={ __( 'New item title', 'wpsprout' ) }
 						hideLabelFromVision
-						placeholder={ __( 'New item title', 'wpkernel' ) }
+						placeholder={ __( 'New item title', 'wpsprout' ) }
 						value={ title }
 						onChange={ setTitle }
 					/>
@@ -111,7 +111,7 @@ function ExampleApp() {
 						isBusy={ isSaving }
 						disabled={ isSaving }
 					>
-						{ __( 'Add item', 'wpkernel' ) }
+						{ __( 'Add item', 'wpsprout' ) }
 					</Button>
 				</form>
 
@@ -123,7 +123,7 @@ function ExampleApp() {
 							<li key={ item.id }>{ item.title }</li>
 						) ) }
 						{ 0 === items.length && (
-							<li>{ __( 'No items yet.', 'wpkernel' ) }</li>
+							<li>{ __( 'No items yet.', 'wpsprout' ) }</li>
 						) }
 					</ul>
 				) }
@@ -132,7 +132,7 @@ function ExampleApp() {
 	);
 }
 
-const mountId = window.wpKernelAdmin?.mountId ?? 'wpkernel-example-root';
+const mountId = window.wpKernelAdmin?.mountId ?? 'wpsprout-example-root';
 const root = document.getElementById( mountId );
 
 if ( root ) {

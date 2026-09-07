@@ -2,12 +2,12 @@
 /**
  * Asset enqueue helpers.
  *
- * @package WPKernel
+ * @package WPSprout
  */
 
 declare( strict_types=1 );
 
-namespace WPKernel\Helper;
+namespace WPSprout\Helper;
 
 /**
  * Thin wrapper around the dependency/version manifest that
@@ -22,8 +22,8 @@ final class Assets {
 	 * dependencies and version from the generated .asset.php file.
 	 *
 	 * @param string $handle    Script handle.
-	 * @param string $build_dir Absolute path to the plugin's build directory (e.g. WPKERNEL_PATH . 'build').
-	 * @param string $build_url Public URL to the same directory (e.g. WPKERNEL_URL . 'build').
+	 * @param string $build_dir Absolute path to the plugin's build directory (e.g. WPSPROUT_PATH . 'build').
+	 * @param string $build_url Public URL to the same directory (e.g. WPSPROUT_URL . 'build').
 	 * @param string $entry     Entry name without extension, e.g. "admin" for admin.js / admin.asset.php.
 	 * @param array  $extra_deps Additional script handles to depend on, beyond what the asset file declares.
 	 */
@@ -35,7 +35,7 @@ final class Assets {
 			wp_die(
 				esc_html(
 					sprintf(
-						'WPKernel: missing build asset "%s.asset.php" — run the JS build before activating this plugin.',
+						'WPSprout: missing build asset "%s.asset.php" — run the JS build before activating this plugin.',
 						$entry
 					)
 				)
@@ -74,6 +74,6 @@ final class Assets {
 			return;
 		}
 
-		wp_enqueue_style( $handle, rtrim( $build_url, '/' ) . "/{$entry}.css", array(), WPKERNEL_VERSION );
+		wp_enqueue_style( $handle, rtrim( $build_url, '/' ) . "/{$entry}.css", array(), WPSPROUT_VERSION );
 	}
 }

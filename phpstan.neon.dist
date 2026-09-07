@@ -6,7 +6,7 @@ parameters:
         - includes
         - bootstrap
         - config
-        - wpkernel.php
+        - wpsprout.php
         - uninstall.php
     excludePaths:
         - includes/Examples/* # Demo code, replaced per-project.

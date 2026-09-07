@@ -2,14 +2,14 @@
 /**
  * Abstract base migration.
  *
- * @package WPKernel
+ * @package WPSprout
  */
 
 declare( strict_types=1 );
 
-namespace WPKernel\Database;
+namespace WPSprout\Database;
 
-use WPKernel\Contracts\MigrationInterface;
+use WPSprout\Contracts\MigrationInterface;
 
 /**
  * Convenience base class: gives subclasses the global $wpdb and the

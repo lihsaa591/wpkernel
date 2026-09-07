@@ -2,15 +2,15 @@
 /**
  * Base service provider.
  *
- * @package WPKernel
+ * @package WPSprout
  */
 
 declare( strict_types=1 );
 
-namespace WPKernel\Providers;
+namespace WPSprout\Providers;
 
 use League\Container\Container;
-use WPKernel\Contracts\ServiceProviderInterface;
+use WPSprout\Contracts\ServiceProviderInterface;
 
 /**
  * Most providers only need to bind services, not hook into WordPress —

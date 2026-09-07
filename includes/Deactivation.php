@@ -2,12 +2,12 @@
 /**
  * Plugin deactivation.
  *
- * @package WPKernel
+ * @package WPSprout
  */
 
 declare( strict_types=1 );
 
-namespace WPKernel;
+namespace WPSprout;
 
 /**
  * Deactivation is reversible housekeeping only (flush rewrite rules,

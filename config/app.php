@@ -6,7 +6,7 @@
  * boilerplate will edit: add a provider, a REST controller, or an admin
  * page here and nothing else needs to change.
  *
- * @package WPKernel
+ * @package WPSprout
  */
 
 declare( strict_types=1 );
@@ -19,26 +19,26 @@ return array(
 	 * Plugin::run().
 	 */
 	'providers' => array(
-		\WPKernel\Providers\AppServiceProvider::class,
-		\WPKernel\Providers\DatabaseServiceProvider::class,
-		\WPKernel\Providers\RestApiServiceProvider::class,
-		\WPKernel\Providers\AdminServiceProvider::class,
+		\WPSprout\Providers\AppServiceProvider::class,
+		\WPSprout\Providers\DatabaseServiceProvider::class,
+		\WPSprout\Providers\RestApiServiceProvider::class,
+		\WPSprout\Providers\AdminServiceProvider::class,
 	),
 
 	'rest'      => array(
 		'controllers' => array(
-			\WPKernel\Examples\ExampleItemsController::class,
+			\WPSprout\Examples\ExampleItemsController::class,
 		),
 	),
 
 	'admin'     => array(
 		'pages' => array(
 			array(
-				'page_title'       => __( 'WPKernel Example', 'wpkernel' ),
-				'menu_title'       => __( 'WPKernel', 'wpkernel' ),
+				'page_title'       => __( 'WPSprout Example', 'wpsprout' ),
+				'menu_title'       => __( 'WPSprout', 'wpsprout' ),
 				'capability'       => 'manage_options',
-				'menu_slug'        => 'wpkernel-example',
-				'mount_element_id' => 'wpkernel-example-root',
+				'menu_slug'        => 'wpsprout-example',
+				'mount_element_id' => 'wpsprout-example-root',
 				'script_entry'     => 'admin',
 				'icon'             => 'dashicons-carrot',
 				'position'         => 30,

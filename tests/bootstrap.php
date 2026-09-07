@@ -6,7 +6,7 @@
  * Integration tests that need a real WordPress + database belong in a
  * separate suite run against `wp-env` (see .wp-env.json), not here.
  *
- * @package WPKernel
+ * @package WPSprout
  */
 
 declare( strict_types=1 );
@@ -15,14 +15,14 @@ require_once dirname( __DIR__ ) . '/vendor/autoload.php';
 
 // A handful of constants the plugin file itself defines, that some
 // unit-tested classes reach for directly (e.g. Assets, migrations).
-if ( ! defined( 'WPKERNEL_VERSION' ) ) {
-	define( 'WPKERNEL_VERSION', '0.1.0-test' );
+if ( ! defined( 'WPSPROUT_VERSION' ) ) {
+	define( 'WPSPROUT_VERSION', '0.1.0-test' );
 }
-if ( ! defined( 'WPKERNEL_PATH' ) ) {
-	define( 'WPKERNEL_PATH', dirname( __DIR__ ) . '/' );
+if ( ! defined( 'WPSPROUT_PATH' ) ) {
+	define( 'WPSPROUT_PATH', dirname( __DIR__ ) . '/' );
 }
-if ( ! defined( 'WPKERNEL_URL' ) ) {
-	define( 'WPKERNEL_URL', 'https://example.test/wp-content/plugins/wpkernel/' );
+if ( ! defined( 'WPSPROUT_URL' ) ) {
+	define( 'WPSPROUT_URL', 'https://example.test/wp-content/plugins/wpsprout/' );
 }
 if ( ! defined( 'ABSPATH' ) ) {
 	define( 'ABSPATH', sys_get_temp_dir() . '/' );
